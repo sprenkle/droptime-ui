@@ -32,7 +32,7 @@ export class DroptimeService {
 
     console.log('delete getTagsToActions');
 
-    return this.http.delete("http://10.0.0.148:5002/tagstoactions/" + actionType + "/" + tagid, httpOptions);
+    return this.http.delete("http://10.0.0.166:5002/tagstoactions/" + actionType + "/" + tagid, httpOptions);
   }
 
 
@@ -47,7 +47,7 @@ export class DroptimeService {
 
     console.log('calling getTagsToActions');
 
-    var tagtoactions = this.http.get<TagToAction[]>("http://10.0.0.148:5002/tagstoactions", httpOptions);
+    var tagtoactions = this.http.get<TagToAction[]>("http://10.0.0.166:5002/tagstoactions", httpOptions);
 
     return tagtoactions;
   }
@@ -63,7 +63,7 @@ export class DroptimeService {
 
     var ta: TagToAction =  {tagid: tagid, actiontype: "1", identifier: identifier};
 
-    this.http.post("http://10.0.0.148:5002/tagstoactions", ta, httpOptions).subscribe();
+    this.http.post("http://10.0.0.166:5002/tagstoactions", ta, httpOptions).subscribe();
   }
 
   getLastSeenTag():Observable<string> {
@@ -75,7 +75,7 @@ export class DroptimeService {
       })
     };
 
-    var tag = this.http.get<string>("http://10.0.0.148:5002/lastseentag", httpOptions);
+    var tag = this.http.get<string>("http://10.0.0.166:5002/lastseentag", httpOptions);
 
     return tag;
   }
@@ -90,7 +90,7 @@ export class DroptimeService {
       })
     };
 
-    var tags = this.http.get<Tag[]>("http://10.0.0.148:5002/tags/" + this.authenticationService.currentUserValue.userid , httpOptions);
+    var tags = this.http.get<Tag[]>("http://10.0.0.166:5002/tags/" + this.authenticationService.currentUserValue.userid , httpOptions);
 
     return tags;
   }
@@ -105,7 +105,7 @@ export class DroptimeService {
     };
 
     console.log(tag);
-    return this.http.delete("http://10.0.0.148:5002/tag/" + tag.tagid, httpOptions);
+    return this.http.delete("http://10.0.0.166:5002/tag/" + tag.tagid, httpOptions);
   }
 
 
@@ -119,7 +119,7 @@ export class DroptimeService {
       })
     };
 
-    var tag = this.http.get<Tag>("http://10.0.0.148:5002/tag/" + tagid, httpOptions);
+    var tag = this.http.get<Tag>("http://10.0.0.166:5002/tag/" + tagid, httpOptions);
 
     return tag;
   }
@@ -135,7 +135,7 @@ export class DroptimeService {
     };
 
     console.log(tag);
-    return this.http.post("http://10.0.0.148:5002/tag", tag, httpOptions);
+    return this.http.post("http://10.0.0.166:5002/tag", tag, httpOptions);
   }
 
   getUsers(): Observable<User[]>{
@@ -147,7 +147,7 @@ export class DroptimeService {
       })
     };
 
-    var users = this.http.get<User[]>("http://10.0.0.148:5002/users", httpOptions);
+    var users = this.http.get<User[]>("http://10.0.0.166:5002/users", httpOptions);
 
     return users;
   }
