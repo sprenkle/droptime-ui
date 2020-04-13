@@ -1,0 +1,16 @@
+<br/>
+
+<!-- <span class="badge"> {{user.userid}}</span> {{user.first}} {{user.last}} -->
+<div *ngIf="currentuser">
+  <div>
+    {{currentuser.first}}&nbsp;{{currentuser.last}}
+  </div>
+</div>
+
+
+<ul class="users">
+  <li *ngFor="let user of users">
+    <span class="badge"> {{user.userid}}</span> {{user.first}} {{user.last}} &nbsp; <button (click)="setCurrentUser(user)">Set Current User</button>
+  </li>
+</ul>
+

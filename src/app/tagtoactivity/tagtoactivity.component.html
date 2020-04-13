@@ -1,0 +1,14 @@
+<br/>
+<table>
+  <tr *ngFor="let tag of tags">
+    <td><span class="badge">{{tag.name}}</span></td>
+    <td><span class="badge">{{tag.description}}</span></td>
+    <td><span class="badge">
+      <select class="activitiescombo" name="repeatSelect" ngModel={{tagtoactionsDict[tag.tagid]}} (change)="getSelectedValue(tag.tagid,$event)">
+        <option *ngFor="let activity of activities" value="{{activity.id}}">{{activity.name}}</option>
+      </select>
+    </span></td>
+    <td><button (click)="update(tag.tagid)">Update</button></td>
+    <td><button (click)="deleteTagsToActions(tag.tagid, 1)">Delete</button></td>
+  </tr>
+</table>

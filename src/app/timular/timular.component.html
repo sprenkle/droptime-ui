@@ -1,0 +1,40 @@
+<div *ngIf="isAddActivity!==true">
+  <p>
+  <button (click)="addActivity()">Add</button>
+</p>
+</div>
+<div *ngIf="isAddActivity===true">
+  <div>
+    <label>name:
+      <input [(ngModel)]="addedActivity" placeholder="name"/>
+    </label>
+  </div>
+  <input [(colorPicker)]="color" [style.background]="color"/>
+  <p>
+    <button (click)="add()">Add Activity</button>
+  </p>
+</div>
+
+
+<ul class="activities">
+  <li *ngFor="let activity of activities"
+    [class.selected]="activity === selectedActivity"
+    (click)="onSelect(activity)" >
+  <span class="badge" [ngStyle]="{'background-color':activity.color}">{{activity.id}}</span> {{activity.name}}
+  </li>
+</ul>
+
+<div *ngIf="selectedActivity && isAddActivity!==true">
+  <h2>{{selectedActivity.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedActivity.id}}</div>
+  <div><span>color: </span>{{selectedActivity.color}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedActivity.name" placeholder="name"/>
+    </label>
+  </div>
+  <input [(colorPicker)]="color" [style.background]="selectedActivity.color"/>
+  <p>
+    <button (click)="updateName(selectedActivity)">Update Name</button><button (click)="delete(selectedActivity)">Delete</button>
+  </p>
+</div>

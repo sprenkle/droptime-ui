@@ -1,0 +1,21 @@
+<br/>
+<div>Last Tag &nbsp; <button (click)="getLastTag()">Update</button> &nbsp; {{lasttag}}</div>
+
+<div *ngIf="selectedtag" >
+  <h2>{{selectedtag.name | uppercase}} Details</h2>
+  <!-- <div><span>id: </span>{{selectedtag.id}}</div>
+  <div><span>color: </span>{{selectedtag.color}}</div> -->
+  <div>
+    <label>name:<input [(ngModel)]="selectedtag.name" placeholder="name" ></label>
+    <label>description:<input [(ngModel)]="selectedtag.description"></label>
+    <button (click)="updateTag(selectedtag)">Update Tag</button>
+  </div>
+</div>
+
+
+
+<ul class="tags">
+  <li *ngFor="let tag of tags" [class.selected]="tag === selectedtag" (click)="onSelect(tag)" >
+    <span class="badge"> {{tag.name}}</span> {{tag.description}} &nbsp; {{tag.tagid}} &nbsp; {{tag.userid}} &nbsp; <button (click)="deleteTag(tag)">Delete Tag</button>
+  </li>
+</ul>
