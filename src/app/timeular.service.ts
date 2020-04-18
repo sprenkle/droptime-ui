@@ -37,9 +37,6 @@ export class TimeularService {
       return;
     }
 
-    console.log(this.authenticationService.currentUserValue);
-    console.log(this.authenticationService.timeularToken);
-
     const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type':  'application/json',

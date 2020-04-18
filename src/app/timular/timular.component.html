@@ -27,14 +27,32 @@
 <div *ngIf="selectedActivity && isAddActivity!==true">
   <h2>{{selectedActivity.name | uppercase}} Details</h2>
   <div><span>id: </span>{{selectedActivity.id}}</div>
-  <div><span>color: </span>{{selectedActivity.color}}</div>
+  <input [(colorPicker)]="color" [style.background]="selectedActivity.color"/>
   <div>
     <label>name:
       <input [(ngModel)]="selectedActivity.name" placeholder="name"/>
     </label>
   </div>
-  <input [(colorPicker)]="color" [style.background]="selectedActivity.color"/>
+
+<br/>
+Tracker
+<label>Show Color
+<input type="checkbox" checked="true" [(ngModel)]="selectedDropTimeActivity.show">
+</label>
+  <div>
+    <select [(ngModel)]="selectedDropTimeActivity.dailyGoals">
+      <option value="0">none</option>
+      <option value="1">activation</option>
+      <option value="2">day</option>
+      <option value="3">week</option>
+      <option value="4">month</option>
+      <option value="5">year</option>
+    </select>
+  </div>
+  <label>Duration Seconds
+    <input [(ngModel)]="selectedDropTimeActivity.dailytimeSec"/>
+  </label>
   <p>
-    <button (click)="updateName(selectedActivity)">Update Name</button><button (click)="delete(selectedActivity)">Delete</button>
+    <button (click)="updateActivity(selectedActivity)">Update</button><button (click)="delete(selectedActivity)">Delete</button>
   </p>
 </div>
