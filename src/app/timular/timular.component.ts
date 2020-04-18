@@ -38,7 +38,8 @@ export class TimularComponent implements OnInit {
         this.selectedDropTimeActivity.color = activity.color;
         this.selectedDropTimeActivity.name = activity.name;
 
-
+        console.log('On Select')
+        console.log(activity)
         console.log(x);
       }, (err) => {
         console.log(err);
@@ -57,11 +58,6 @@ export class TimularComponent implements OnInit {
   }
 
   updateActivity(activity: Activity): void {
-    console.log(activity.name);
-    activity.color = this.color;
-    console.log(activity.color);
-
-    //this.timeularService.updateActivity(activity).subscribe(activities => this.getActivities());
     this.droptimeService.updateDropTimeActivity(this.selectedDropTimeActivity);
   }
 
