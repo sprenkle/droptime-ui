@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,6 +10,11 @@ import { TagsComponent } from './tags/tags.component';
 import { UserComponent } from './user/user.component';
 import { TagtoactivityComponent } from './tagtoactivity/tagtoactivity.component';
 import { LoginComponent } from './login/login.component';
+import { RemindersComponent } from './reminders/reminders.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -19,14 +23,19 @@ import { LoginComponent } from './login/login.component';
     TagsComponent,
     UserComponent,
     TagtoactivityComponent,
-    LoginComponent
+    LoginComponent,
+    RemindersComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ColorPickerModule
+    ColorPickerModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { Tag } from './tag'
 import { User } from './user'
 import { TagToAction } from './tagtoaction';
+import { Reminder } from './reminder';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AuthenticationService } from './authentication.service'
 import { DropTimeActivity } from './droptimeactivity'
+import { Device } from './device'
 
 
 @Injectable({
@@ -25,6 +27,20 @@ export class DroptimeService {
   // 'Access-Control-Allow-Methods', 'GET,POST,OPTIONS,DELETE,PUT'
 
   // tagstoactions
+  getDevices(): Observable<Device[]>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+      })
+    };
+
+    console.log('calling getDevices');
+
+    return this.http.get<Device[]>(this.baseUrl + "/devices", httpOptions);
+  }
+
   deleteTagsToActions(tagid: number, actionType: number): Observable<object>{
     const httpOptions = {
       headers: new HttpHeaders({
@@ -38,7 +54,6 @@ export class DroptimeService {
 
     return this.http.delete(this.baseUrl + "/tagstoactions/" + actionType + "/" + tagid, httpOptions);
   }
-
 
   getTagsToActions(): Observable<TagToAction[]>{
     const httpOptions = {
@@ -114,7 +129,6 @@ export class DroptimeService {
     return tag;
   }
 
-
   getTags(): Observable<Tag[]> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -141,8 +155,6 @@ export class DroptimeService {
     console.log(tag);
     return this.http.delete(this.baseUrl + "/tag/" + tag.tagid, httpOptions);
   }
-
-
 
   getTag(tagid: string): Observable<Tag> {
     const httpOptions = {
@@ -186,6 +198,31 @@ export class DroptimeService {
     return users;
   }
 
+  getReminders(deviceId: string): Observable<Reminder[]>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+      })
+    };
+
+    var reminders = this.http.get<Reminder[]>(this.baseUrl + "/reminders/" + deviceId, httpOptions);
+
+    return reminders;
+  }
+
+  saveReminder(reminder: Reminder): Observable<object>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+      })
+    };
+
+    return this.http.post(this.baseUrl + "/reminders", reminder, httpOptions);
+  }
 
   /**
  * Handle Http operation that failed.
