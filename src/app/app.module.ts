@@ -13,8 +13,10 @@ import { LoginComponent } from './login/login.component';
 import { RemindersComponent } from './reminders/reminders.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TagtoreminderComponent } from './tagtoreminder/tagtoreminder.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     UserComponent,
     TagtoactivityComponent,
     LoginComponent,
-    RemindersComponent
+    RemindersComponent,
+    TagtoreminderComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

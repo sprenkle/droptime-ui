@@ -1,4 +1,10 @@
 <br/>
+<select ngModel={{actiontype}} (change)="setActionType($event)">
+  <option value=1>Timeular</option>
+  <option value=2>Reminder</option>
+</select>
+<br/>
+<br/>
 <table>
   <tr *ngFor="let tag of tags">
     <td><span class="badge">{{tag.name}}</span></td>

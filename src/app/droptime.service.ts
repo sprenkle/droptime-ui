@@ -20,6 +20,7 @@ export class DroptimeService {
 
    }
 
+   //baseUrl:string = "http://10.0.0.166:5002";
    baseUrl:string = "http://10.0.0.148:5002";
   // The solution needs to add these headers to the server response.
 
@@ -51,7 +52,7 @@ export class DroptimeService {
     };
 
     console.log('delete getTagsToActions');
-
+    console.log(actionType, tagid);
     return this.http.delete(this.baseUrl + "/tagstoactions/" + actionType + "/" + tagid, httpOptions);
   }
 
@@ -101,7 +102,7 @@ export class DroptimeService {
     this.http.post(this.baseUrl + "/activities", droptTimeActivity, httpOptions).subscribe();
   }
 
-  updateTagsToActions(tagid: number, identifier: number): void {
+  updateTagsToActions(tagid: number, actionType: string, identifier: number): void {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -110,7 +111,7 @@ export class DroptimeService {
       })
     };
 
-    var ta: TagToAction =  {tagid: tagid, actiontype: "1", identifier: identifier};
+    var ta: TagToAction =  {tagid: tagid, actiontype: actionType, identifier: identifier};
 
     this.http.post(this.baseUrl + "/tagstoactions", ta, httpOptions).subscribe();
   }
@@ -198,7 +199,7 @@ export class DroptimeService {
     return users;
   }
 
-  getReminders(deviceId: string): Observable<Reminder[]>{
+  getReminders(userId: string): Observable<Reminder[]>{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -207,7 +208,7 @@ export class DroptimeService {
       })
     };
 
-    var reminders = this.http.get<Reminder[]>(this.baseUrl + "/reminders/" + deviceId, httpOptions);
+    var reminders = this.http.get<Reminder[]>(this.baseUrl + "/reminders/" + userId, httpOptions);
 
     return reminders;
   }
@@ -221,7 +222,28 @@ export class DroptimeService {
       })
     };
 
+    reminder.showled = reminder.showled ? 1 : 0;
+    reminder.sunday = reminder.sunday ? 1 : 0;
+    reminder.monday = reminder.monday ? 1 : 0;
+    reminder.tuesday = reminder.tuesday ? 1 : 0;
+    reminder.wednesday = reminder.wednesday ? 1 : 0;
+    reminder.thursday = reminder.thursday ? 1 : 0;
+    reminder.friday = reminder.friday ? 1 : 0;
+    reminder.saturday = reminder.saturday ? 1 : 0;
+
     return this.http.post(this.baseUrl + "/reminders", reminder, httpOptions);
+  }
+
+  deleteReminder(reminder: Reminder): Observable<object>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+      })
+    };
+
+    return this.http.delete(this.baseUrl + "/reminders/delete/" + reminder.reminderid, httpOptions);
   }
 
   /**

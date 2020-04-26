@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { TagtoactivityComponent } from './tagtoactivity/tagtoactivity.component';
 import { RemindersComponent } from './reminders/reminders.component';
+import { TagtoreminderComponent } from './tagtoreminder/tagtoreminder.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
                         { path: 'tags', component: TagsComponent, canActivate: [AuthGuard] },
                         { path: 'tagtoactivity', component: TagtoactivityComponent, canActivate: [AuthGuard] },
                         { path: 'users', component: UserComponent },
-                        { path: 'reminders', component: RemindersComponent, canActivate: [AuthGuard] }
+                        { path: 'reminders', component: RemindersComponent, canActivate: [AuthGuard] },
+                        { path: 'tagtoreminder', component: TagtoreminderComponent, canActivate: [AuthGuard] }
                       ];
 
 @NgModule({
